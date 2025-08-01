@@ -28,9 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 ##DEBUG = True
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-
+SECRET_KEY =os.environ.get('SECRET_KEY', 'fallback-dev-secret')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = []
 
 
@@ -102,7 +101,7 @@ WSGI_APPLICATION = 'HichamRenting.wsgi.application'
     }
 }'''
 DATABASES = {
-    'default': dj_database_url.config(default=config("DATABASE_URL"))
+    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
 
 # Password validation
