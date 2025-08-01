@@ -102,9 +102,7 @@ WSGI_APPLICATION = 'HichamRenting.wsgi.application'
     }
 }'''
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL")
-    )
+    'default': dj_database_url.config(default=config("DATABASE_URL"))
 }
 
 # Password validation
@@ -125,7 +123,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+ALLOWED_HOSTS = ['*']
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "/static/"
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
