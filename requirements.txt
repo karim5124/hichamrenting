@@ -6,6 +6,8 @@ django-extensions==4.1
 executing==2.2.0
 gunicorn==21.2.0
 ipython==9.4.0
+dj-database-url
+psycopg2-binary
 ipython_pygments_lexers==1.1.1
 jedi==0.19.2
 matplotlib-inline==0.1.7
