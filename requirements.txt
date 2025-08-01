@@ -19,7 +19,6 @@ psycopg-binary==3.2.9
 ptyprocess==0.7.0
 pure_eval==0.2.3
 Pygments==2.19.2
-python-decouple==3.8
 sqlparse==0.5.3
 stack-data==0.6.3
 traitlets==5.14.3
