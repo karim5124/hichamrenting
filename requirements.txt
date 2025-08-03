@@ -8,6 +8,8 @@ gunicorn==21.2.0
 ipython==9.4.0
 dj-database-url
 whitenoise
+django-qr-code
+Pillow==9.0.0
 psycopg2-binary
 ipython_pygments_lexers==1.1.1
 jedi==0.19.2

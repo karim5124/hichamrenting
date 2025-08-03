@@ -1,34 +1,30 @@
-version: '3.9'
-
+version: '3.8'
 services:
   db:
     image: postgres:16
-    restart: always
     environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+      POSTGRES_DB:       hicham_renting
+      POSTGRES_USER:     hicham
+      POSTGRES_PASSWORD: centrino
     ports:
-      - "5433:5432"
+      - "5433:5432"       # map host 5433 → container 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   web:
     build: .
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
     depends_on:
       - db
+    volumes:
+      - .:/code           # live-reload code changes (migrations rerun on container restart)
+    ports:
+      - "8000:8000"
     environment:
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DEBUG=${DEBUG}
-      - SECRET_KEY=${SECRET_KEY}
-
+      DB_HOST:     db
+      DB_PORT:     5432
+      DB_NAME:     hicham_renting
+      DB_USER:     hicham
+      DB_PASSWORD: centrino
+      DATABASE_URL: postgres://hicham:centrino@db:5432/hicham_renting
 volumes:
-  postgres_data:
+  pgdata:

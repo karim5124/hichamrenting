@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'apps.core'
+    'apps.core',
+    'qr_code'
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ALLOWED_HOSTS = ['*']
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # if you have a global /static folder
+]
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
@@ -146,3 +150,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Where Django will write uploaded files
+MEDIA_ROOT = BASE_DIR / "media"
+
+# URL that serves those files in development
+MEDIA_URL = "/media/"
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
