@@ -62,7 +62,7 @@ class Device(TimeStampedModel):
 
     def save(self, *args, **kwargs):
         # Only generate once (when qr_image is empty)
-        if not self.qr_image:
+        if not self.code_qr:
             # 1. Prepare the data and options
             data = str(self.code_qr)
             options = QRCodeOptions()  # uses sensible defaults :contentReference[oaicite:0]{index=0}
@@ -73,7 +73,7 @@ class Device(TimeStampedModel):
 
             # 3. Wrap in a Django file and save to the ImageField (without committing yet)
             filename = f"qr_{self.code_qr}.png"
-            self.qr_image.save(filename, ContentFile(img_bytes), save=False)
+            self.code_qr.save(filename, ContentFile(img_bytes), save=False)
 
         # 4. Now call super to save both model and file
         super().save(*args, **kwargs)
