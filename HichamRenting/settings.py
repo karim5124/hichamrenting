@@ -29,9 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY =os.environ.get('SECRET_KEY', 'fallback-dev-secret')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "hichamrenting-production.up.railway.app",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://hichamrenting-production.up.railway.app",
+]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # Application definition
 
 INSTALLED_APPS = [
