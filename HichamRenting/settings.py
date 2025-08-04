@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'apps.core',
-    'qr_code'
+    'qr_code',
+    'landing'
 ]
 
 MIDDLEWARE = [
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'HichamRenting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hicham_renting',
@@ -95,7 +96,7 @@ WSGI_APPLICATION = 'HichamRenting.wsgi.application'
         'HOST': '127.0.0.1',
         'PORT': '5433',
     }
-}'''
+}
 
 '''DATABASES = {
     'default': {
@@ -107,11 +108,11 @@ WSGI_APPLICATION = 'HichamRenting.wsgi.application'
         'PORT': '5432',
     }
 }'''
-
+'''
 DATABASES = {
     'default': dj_database_url.config()
 }
-
+'''
 print("DATABASE_URL ENV:", os.environ.get("DATABASE_URL"), dj_database_url.config(), 11111)
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

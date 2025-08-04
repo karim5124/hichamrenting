@@ -15,14 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
 
+from landing.views import home
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # 1) Mount your landing app at “/”:
+    path("", include("landing.urls")),
+
+    # 2) Keep the admin where it is:
+    path("admin/", admin.site.urls),
 ]
 
+# 3) Serve media files in DEBUG mode
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
